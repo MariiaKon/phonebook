@@ -38,5 +38,5 @@ ContactList.propTypes = {
       id: PropTypes.string.isRequired,
     })
   ),
-  onContactDelete: PropTypes.func,
+  onContactDelete: PropTypes.func.isRequired,
 };
