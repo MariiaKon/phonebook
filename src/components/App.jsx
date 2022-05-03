@@ -10,20 +10,31 @@ export class App extends Component {
     filter: '',
   };
 
+  LS_KEY = 'contacts';
+
+  componentDidMount() {
+    const savedContacts = JSON.parse(localStorage.getItem(this.LS_KEY));
+    if (!savedContacts) {
+      localStorage.setItem(this.LS_KEY, JSON.stringify(this.state.contacts));
+    }
+    this.setState({ contacts: savedContacts });
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem(this.LS_KEY, JSON.stringify(this.state.contacts));
+    }
+  }
+
   addContact = contact => {
     const isContactExist = this.state.contacts
       .map(existingContact => existingContact.name)
       .includes(contact.name);
 
     if (!isContactExist) {
-      const phonebook = this.state.contacts;
-      phonebook.push(contact);
-      this.setState({ contacts: phonebook });
-
-      // Репета-style
-      // this.setState(({ contacts }) => ({
-      //   contacts: [contact, ...contacts],
-      // }));
+      this.setState(({ contacts }) => ({
+        contacts: [contact, ...contacts],
+      }));
     } else {
       alert(`${contact.name} is already in contacts`);
     }
