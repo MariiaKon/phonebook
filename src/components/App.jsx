@@ -6,9 +6,9 @@ import { ContactsTitle, PhonebookTitle } from './App.styled';
 
 export function App() {
   const LS_KEY = 'contacts';
-  const [contacts, setContacts] = useState(
-    JSON.parse(localStorage.getItem(LS_KEY)) ?? []
-  );
+  const [contacts, setContacts] = useState(() => {
+    return JSON.parse(localStorage.getItem(LS_KEY)) ?? [];
+  });
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
