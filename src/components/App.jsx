@@ -5,12 +5,13 @@ import { ContactList } from './ContactList';
 import { ContactsTitle, PhonebookTitle } from './App.styled';
 
 export function App() {
+  console.log('app 8');
   const LS_KEY = 'contacts';
   const [contacts, setContacts] = useState(() => {
     return JSON.parse(localStorage.getItem(LS_KEY)) ?? [];
   });
   const [filter, setFilter] = useState('');
-
+  console.log('app 13');
   useEffect(() => {
     localStorage.setItem(LS_KEY, JSON.stringify(contacts));
   }, [contacts]);
@@ -26,7 +27,7 @@ export function App() {
       alert(`${contact.name} is already in contacts`);
     }
   };
-
+  console.log('app 29');
   const deleteContact = id => {
     setContacts(contacts.filter(contact => id !== contact.id));
   };
@@ -36,7 +37,7 @@ export function App() {
       contact.name.toLowerCase().includes(filter)
     );
   }, [contacts, filter]);
-
+  console.log('app 39');
   return (
     <>
       <PhonebookTitle>Phonebook</PhonebookTitle>
