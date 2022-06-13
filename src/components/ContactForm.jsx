@@ -1,26 +1,28 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Form, Label, Input, SubmitBtn } from './App.styled';
 import { nanoid } from 'nanoid';
+import { addContact } from '../redux/contactReducer';
+import { useDispatch } from 'react-redux';
 
-export function ContactForm({ onSubmit }) {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+export function ContactForm() {
+  const dispatch = useDispatch();
 
   const formSubmitHandler = e => {
     e.preventDefault();
-    onSubmit({ name, number, id: nanoid() });
 
-    reset();
-  };
+    dispatch(
+      addContact({
+        name: e.target.name.value,
+        number: e.target.number.value,
+        id: nanoid(),
+      })
+    );
 
-  const reset = () => {
-    setName('');
-    setNumber('');
+    e.target.name.value = '';
+    e.target.number.value = '';
   };
 
   return (
-    <Form action="" onSubmit={formSubmitHandler}>
+    <Form onSubmit={formSubmitHandler}>
       <Label>
         Name
         <Input
@@ -30,10 +32,6 @@ export function ContactForm({ onSubmit }) {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           autoComplete="off"
-          value={name}
-          onChange={e => {
-            setName(e.target.value);
-          }}
         />
       </Label>
       <Label>
@@ -45,15 +43,9 @@ export function ContactForm({ onSubmit }) {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           autoComplete="off"
-          value={number}
-          onChange={e => {
-            setNumber(e.target.value);
-          }}
         />
       </Label>
       <SubmitBtn type="submit">Add contact</SubmitBtn>
     </Form>
   );
 }
-
-ContactForm.propTypes = { onSubmit: PropTypes.func.isRequired };
