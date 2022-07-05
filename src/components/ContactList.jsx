@@ -1,28 +1,64 @@
 import PropTypes from 'prop-types';
-import { Contacts, ContactItem, DeleteBtn } from './App.styled';
-import { deleteContact } from '../redux/contactReducer';
-import { useDispatch } from 'react-redux';
+import { FaUserTimes, FaUserEdit, FaUser, FaPhoneSquare } from 'react-icons/fa';
+import { Contacts, ContactItem, InfoBox, Info, ButtonsBox } from './App.styled';
+// import { deleteContact } from '../redux/contactReducer';
+// import { useDispatch } from 'react-redux';
 
 export function ContactList({ contacts }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <Contacts>
       {contacts?.map(contact => {
         return (
-          <li key={contact.id}>
-            <ContactItem>
-              {contact.name}: {contact.number}
-              <DeleteBtn
+          <ContactItem key={contact.id}>
+            <InfoBox>
+              <Info>
+                <FaUser
+                  style={{
+                    size: '16px',
+                    top: '2px',
+                  }}
+                />
+                {contact.name}
+              </Info>
+              <Info>
+                <FaPhoneSquare
+                  style={{
+                    size: '16px',
+                    top: '2px',
+                  }}
+                />
+                {contact.number}
+              </Info>
+            </InfoBox>
+
+            <ButtonsBox>
+              <button type="button">
+                <FaUserEdit
+                  style={{
+                    size: '20px',
+                    top: '8px',
+                    left: '8px',
+                  }}
+                />
+              </button>
+              <button
                 type="button"
-                onClick={() => {
-                  dispatch(deleteContact(contact.id));
-                }}
+                // onClick={() => {
+                //   dispatch(deleteContact(contact.id));
+                // }}
               >
-                Delete
-              </DeleteBtn>
-            </ContactItem>
-          </li>
+                <FaUserTimes
+                  style={{
+                    size: '20px',
+                    top: '8px',
+                    left: '8px',
+                  }}
+                />
+              </button>
+            </ButtonsBox>
+          </ContactItem>
         );
       })}
     </Contacts>

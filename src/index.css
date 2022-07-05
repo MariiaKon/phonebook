@@ -7,6 +7,11 @@
   text-decoration: none;
 }
 
+html {
+      min-height: 100vh;
+      background: rgb(75, 75, 75);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,3 +21,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #c3c0c0;
+  border-radius: 5px;
+  min-width: fit-content;
+  width: 40px;
+  height: 40px;
+  padding: 1px 6px;
+  font-size: 24px;
+}
+
+button:hover, button:active, button:focus {
+  background-color: #dadada;
+  outline: 2px solid #5788eb;
+}
+
+svg {
+  position: absolute;
+ top: 0;
+ left: 0;
+}
