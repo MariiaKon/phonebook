@@ -1,26 +1,17 @@
 import { Form, Label, Input, SubmitBtn } from './App.styled';
-import { nanoid } from 'nanoid';
 import { FaUserPlus, FaPhoneSquare } from 'react-icons/fa';
-
-// import { addContact } from '../redux/contactReducer';
-// import { useDispatch } from 'react-redux';
+import { useAddContactMutation } from 'redux/contactReducer';
 
 export function ContactForm() {
-  // const dispatch = useDispatch();
+  const [addContact] = useAddContactMutation();
 
-  const formSubmitHandler = e => {
-    e.preventDefault();
-
-    // dispatch(
-    //   addContact({
-    //     name: e.target.name.value,
-    //     number: e.target.number.value,
-    //     id: nanoid(),
-    //   })
-    // );
-
-    e.target.name.value = '';
-    e.target.number.value = '';
+  const formSubmitHandler = async contact => {
+    //   try {
+    //     await addContact(contact);
+    //     console.log(contact);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
   };
 
   return (
