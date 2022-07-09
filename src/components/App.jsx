@@ -1,9 +1,10 @@
-import { useMemo } from 'react';
-import { ContactForm } from './ContactForm';
-import { Filter } from './Filter';
-import { ContactList } from './ContactList';
+// import { useMemo } from 'react';
+import { ContactForm } from './Forms/ContactForm';
+import { Filter } from './Forms/Filter';
+import { ContactList } from './ContactList/ContactList';
+// import { Modal } from './EditContactModal/EditContactModal';
 import { ContactsTitle, PhonebookTitle, Container } from './App.styled';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { useGetContactsQuery } from 'redux/contactReducer';
 
 export function App() {
@@ -26,6 +27,7 @@ export function App() {
       <ContactsTitle>Contacts</ContactsTitle>
       <Filter />
       <ContactList contacts={data} />
+      {/* <Modal /> */}
     </Container>
   );
 }

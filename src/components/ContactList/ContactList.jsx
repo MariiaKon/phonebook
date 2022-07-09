@@ -1,11 +1,24 @@
 import PropTypes from 'prop-types';
 import { FaUserTimes, FaUserEdit, FaUser, FaPhoneSquare } from 'react-icons/fa';
-import { Contacts, ContactItem, InfoBox, Info, ButtonsBox } from './App.styled';
-// import { deleteContact } from '../redux/contactReducer';
-// import { useDispatch } from 'react-redux';
+import {
+  Contacts,
+  ContactItem,
+  InfoBox,
+  Info,
+  ButtonsBox,
+} from './ContactList.styled';
+import {
+  useDeleteContactMutation,
+  useEditContactMutation,
+} from 'redux/contactReducer';
 
 export function ContactList({ contacts }) {
-  // const dispatch = useDispatch();
+  const [deleteContact] = useDeleteContactMutation();
+  const [editContact] = useEditContactMutation();
+
+  const editContactHandler = id => {
+    editContact(id);
+  };
 
   return (
     <Contacts>
@@ -34,7 +47,12 @@ export function ContactList({ contacts }) {
             </InfoBox>
 
             <ButtonsBox>
-              <button type="button">
+              <button
+                type="button"
+                onClick={() => {
+                  editContactHandler(contact.id);
+                }}
+              >
                 <FaUserEdit
                   style={{
                     size: '20px',
@@ -45,9 +63,9 @@ export function ContactList({ contacts }) {
               </button>
               <button
                 type="button"
-                // onClick={() => {
-                //   dispatch(deleteContact(contact.id));
-                // }}
+                onClick={() => {
+                  deleteContact(contact.id);
+                }}
               >
                 <FaUserTimes
                   style={{

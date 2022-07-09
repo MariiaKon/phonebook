@@ -1,4 +1,4 @@
-import { Form, Label, Input, SubmitBtn } from './App.styled';
+import { Form, Label, Input, SubmitBtn } from './ContactForm.styled';
 import { FaUserPlus, FaPhoneSquare } from 'react-icons/fa';
 import { useAddContactMutation } from 'redux/contactReducer';
 
@@ -6,16 +6,29 @@ export function ContactForm() {
   const [addContact] = useAddContactMutation();
 
   const formSubmitHandler = async contact => {
-    //   try {
-    //     await addContact(contact);
-    //     console.log(contact);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
+    try {
+      await addContact(contact);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const reset = e => {
+    e.target.name.value = '';
+    e.target.number.value = '';
   };
 
   return (
-    <Form onSubmit={formSubmitHandler}>
+    <Form
+      onSubmit={e => {
+        e.preventDefault();
+        formSubmitHandler({
+          name: e.target.name.value,
+          number: e.target.number.value,
+        });
+        reset(e);
+      }}
+    >
       <Label>
         <FaUserPlus size={'24px'} />
         <Input

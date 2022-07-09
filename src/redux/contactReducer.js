@@ -20,17 +20,30 @@ export const contactsApi = createApi({
       }),
       invalidatesTags: ['Contacts'],
     }),
-    // deleteContact: builder.mutation({
-    //   query: id => ({
-    //     url: `/contacts/${id}`,
-    //     method: 'DELETE',
-    //   }),
-    //   invalidatesTags: ['Contacts'],
-    // }),
+    deleteContact: builder.mutation({
+      query: id => ({
+        url: `/contacts/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Contacts'],
+    }),
+    editContact: builder.mutation({
+      query: ({ id, ...contact }) => ({
+        url: `/contacts/${id}`,
+        method: 'PUT',
+        body: contact,
+      }),
+      invalidatesTags: ['Contacts'],
+    }),
   }),
 });
 
-export const { useGetContactsQuery, useAddContactMutation } = contactsApi;
+export const {
+  useGetContactsQuery,
+  useAddContactMutation,
+  useDeleteContactMutation,
+  useEditContactMutation,
+} = contactsApi;
 
 // export const contactsSlice = createSlice({
 //   name: 'contacts',

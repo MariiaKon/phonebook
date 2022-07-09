@@ -1,5 +1,5 @@
 import { FaSearch } from 'react-icons/fa';
-import { Label, Input, FilterForm } from './App.styled';
+import { Label, Input, FilterForm } from './ContactForm.styled';
 // import { useDispatch } from 'react-redux';
 // import { filter } from '../redux/contactReducer';
 
