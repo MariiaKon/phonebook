@@ -1,21 +1,23 @@
 import { FaSearch } from 'react-icons/fa';
 import { Label, Input, FilterForm } from './ContactForm.styled';
-// import { useDispatch } from 'react-redux';
-// import { filter } from '../redux/contactReducer';
+import { DebounceInput } from 'react-debounce-input';
+import { useDispatch } from 'react-redux';
+import { filterContacts } from 'redux/contactReducer';
 
 export function Filter() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <FilterForm action="">
       <Label>
         <FaSearch size={'24px'} />
-        <Input
+        <DebounceInput
+          element={Input}
+          debounceTimeout={300}
           placeholder="Find contacts by name"
-          type="text"
-          // onChange={e => {
-          //   dispatch(filter(e.target.value));
-          // }}
+          onChange={e => {
+            dispatch(filterContacts(e.target.value));
+          }}
         />
       </Label>
     </FilterForm>

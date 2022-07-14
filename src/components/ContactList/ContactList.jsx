@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { FaUserTimes, FaUserEdit, FaUser, FaPhoneSquare } from 'react-icons/fa';
+import { Button } from 'components/Button/Button';
 import {
   Contacts,
   ContactItem,
@@ -7,18 +9,11 @@ import {
   Info,
   ButtonsBox,
 } from './ContactList.styled';
-import {
-  useDeleteContactMutation,
-  useEditContactMutation,
-} from 'redux/contactReducer';
+import { useDeleteContactMutation } from 'redux/contactReducer';
 
 export function ContactList({ contacts }) {
-  const [deleteContact] = useDeleteContactMutation();
-  const [editContact] = useEditContactMutation();
-
-  const editContactHandler = id => {
-    editContact(id);
-  };
+  const [deleteContact, result] = useDeleteContactMutation();
+  const navigate = useNavigate();
 
   return (
     <Contacts>
@@ -47,34 +42,35 @@ export function ContactList({ contacts }) {
             </InfoBox>
 
             <ButtonsBox>
-              <button
+              <Button
                 type="button"
-                onClick={() => {
-                  editContactHandler(contact.id);
-                }}
-              >
-                <FaUserEdit
-                  style={{
-                    size: '20px',
-                    top: '8px',
-                    left: '8px',
-                  }}
-                />
-              </button>
-              <button
+                onClick={() => navigate(`/edit/${contact.id}`)}
+                content={
+                  <FaUserEdit
+                    style={{
+                      size: '20px',
+                      top: '8px',
+                      left: '8px',
+                    }}
+                  />
+                }
+              />
+              <Button
                 type="button"
                 onClick={() => {
                   deleteContact(contact.id);
                 }}
-              >
-                <FaUserTimes
-                  style={{
-                    size: '20px',
-                    top: '8px',
-                    left: '8px',
-                  }}
-                />
-              </button>
+                disabled={result.isLoading}
+                content={
+                  <FaUserTimes
+                    style={{
+                      size: '20px',
+                      top: '8px',
+                      left: '8px',
+                    }}
+                  />
+                }
+              />
             </ButtonsBox>
           </ContactItem>
         );
