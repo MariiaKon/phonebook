@@ -34,13 +34,6 @@ export const Input = styled.input`
   }
 `;
 
-export const SubmitBtn = styled.button`
-  height: 24px;
-  width: 50%;
-  font-weight: 600;
-  font-size: 12px;
-`;
-
 export const FilterForm = styled.form`
   margin: 10px auto;
   width: 90%;
