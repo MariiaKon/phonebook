@@ -1,4 +1,4 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const contactsApi = createApi({
@@ -10,6 +10,10 @@ export const contactsApi = createApi({
   endpoints: builder => ({
     getContacts: builder.query({
       query: () => 'contacts',
+      providesTags: ['Contacts'],
+    }),
+    getContactById: builder.query({
+      query: id => `/contacts/${id}`,
       providesTags: ['Contacts'],
     }),
     addContact: builder.mutation({
@@ -28,11 +32,10 @@ export const contactsApi = createApi({
       invalidatesTags: ['Contacts'],
     }),
     editContact: builder.mutation({
-      query: ({ id, ...contact }) => ({
-        url: `/contacts/${id}`,
-        method: 'PUT',
-        body: contact,
-      }),
+      query(data) {
+        const { id, ...contact } = data;
+        return { url: `/contacts/${id}`, method: 'PUT', body: contact };
+      },
       invalidatesTags: ['Contacts'],
     }),
   }),
@@ -43,42 +46,22 @@ export const {
   useAddContactMutation,
   useDeleteContactMutation,
   useEditContactMutation,
+  useGetContactByIdQuery,
 } = contactsApi;
 
-// export const contactsSlice = createSlice({
-//   name: 'contacts',
-//   initialState: {
-//     items: [],
-//     filter: '',
-//   },
-//   reducers: {
-//     addContact: (state, action) => {
-//       const isContactExist = state?.items
-//         ?.map(existingContact => existingContact.name)
-//         .includes(action.payload.name);
+export const filterSlice = createSlice({
+  name: 'filter',
+  initialState: {
+    filter: '',
+  },
+  reducers: {
+    filterContacts: (state, action) => {
+      return {
+        ...state,
+        filter: action.payload,
+      };
+    },
+  },
+});
 
-//       if (!isContactExist) {
-//         return { ...state, items: [...state.items, action.payload] };
-//       }
-
-//       alert(`${action.payload.name} is already in contacts`);
-//       return state;
-//     },
-
-//     deleteContact: (state, action) => {
-//       return {
-//         ...state,
-//         items: state.items.filter(contact => action.payload !== contact.id),
-//       };
-//     },
-
-//     filter: (state, action) => {
-//       return {
-//         ...state,
-//         filter: action.payload,
-//       };
-//     },
-//   },
-// });
-
-// export const { addContact, deleteContact, filter } = contactsSlice.actions;
+export const { filterContacts } = filterSlice.actions;
