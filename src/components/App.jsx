@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { ContactForm } from './Forms/ContactForm';
 import { Filter } from './Forms/Filter';
 import { ContactList } from './ContactList/ContactList';
