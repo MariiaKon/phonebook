@@ -10,8 +10,12 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/goit-react-hw-07-phonebook">
+      <BrowserRouter basename="/goit-react-hw-08-phonebook">
         <Routes>
+          {/* <Route path='register' element={ } /> */}
+          {/* <Route path='login' element={ } />  */}
+          {/* <Route path='contacts' element={ } /> */}
+
           <Route path="/" element={<App />} />
           <Route path="edit/:contactId" element={<Modal />} />
         </Routes>
@@ -19,3 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>
 );
+
+// /register - публичный маршрут регистрации нового пользователя с формой
+// /login - публичный маршрут логина сущестующего пользователя с формой
+// /contacts - приватный маршрут для работы с коллекцией контактов пользователя
