@@ -1,50 +1,29 @@
 import { Form, Label, Input } from './ContactForm.styled';
 import { FaUserPlus, FaPhoneSquare } from 'react-icons/fa';
 import { Button } from 'components/Button/Button';
-import { useAddContactMutation } from 'redux/contactReducer';
-import { useSelector } from 'react-redux';
+import { useFormHandler } from 'hooks/useFomHandler';
 
 export function ContactForm({
   initValues = {
     name: '',
     number: '',
   },
-  children = <Button type="submit" content={'Add contact'} className="btn" />,
+  btnContent = 'Add contact',
+  onSubmit = function (e, formHandler, successHandler) {
+    e.preventDefault();
+    formHandler({
+      name: e.target.name.value,
+      number: e.target.number.value,
+    });
+    successHandler(e);
+  },
 }) {
-  const existingContactsArr = useSelector(
-    state => Object.values(state.contacts?.queries)[0]?.data
-  );
-  const [addContact] = useAddContactMutation();
-
-  const formSubmitHandler = async contact => {
-    const existingContacts = existingContactsArr.map(contact => contact.name);
-
-    if (existingContacts.includes(contact.name)) {
-      alert(`${contact.name} is already exists`);
-      return;
-    }
-
-    try {
-      await addContact(contact);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const reset = e => {
-    e.target.name.value = initValues.name;
-    e.target.number.value = initValues.number;
-  };
+  const { formSubmitHandler, reset } = useFormHandler(initValues);
 
   return (
     <Form
       onSubmit={e => {
-        e.preventDefault();
-        formSubmitHandler({
-          name: e.target.name.value,
-          number: e.target.number.value,
-        });
-        reset(e);
+        onSubmit(e, formSubmitHandler, reset);
       }}
     >
       <Label>
@@ -57,7 +36,7 @@ export function ContactForm({
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           defaultValue={initValues.name}
-          // autoComplete="off"
+          autoComplete="off"
         />
       </Label>
       <Label>
@@ -70,11 +49,10 @@ export function ContactForm({
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           defaultValue={initValues.number}
-          // autoComplete="off"
+          autoComplete="off"
         />
       </Label>
-      {children}
-      {/* {<Button type="submit" content={submitBtnContent} className="btn" />} */}
+      <Button type="submit" content={btnContent} className="btn" />
     </Form>
   );
 }

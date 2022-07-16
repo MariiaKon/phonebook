@@ -19,13 +19,7 @@ export function Modal() {
 
   const editContactHandler = async contact => {
     try {
-      if (contact.name.trim() === '' || contact.number.trim() === '') {
-        alert('Please, fill all the fields');
-        return;
-      }
-
       await editContact(contact);
-      closeModal();
     } catch (error) {
       console.log(error);
     }
@@ -37,21 +31,16 @@ export function Modal() {
         {data && (
           <ContactForm
             initValues={{ name: data.name, number: data.number }}
-            children={
-              <Button
-                type="button"
-                content="Edit contact"
-                className="btn"
-                onClick={e => {
-                  const form = e.target.offsetParent.childNodes[0];
-                  editContactHandler({
-                    ...data,
-                    name: form.name.value,
-                    number: form.number.value,
-                  });
-                }}
-              />
-            }
+            btnContent={'Edit contact'}
+            onSubmit={e => {
+              e.preventDefault();
+              editContactHandler({
+                ...data,
+                name: e.target.name.value,
+                number: e.target.number.value,
+              });
+              closeModal();
+            }}
           />
         )}
 
