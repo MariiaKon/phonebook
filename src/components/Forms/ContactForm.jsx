@@ -10,7 +10,6 @@ export function ContactForm({
     number: '',
   },
   children = <Button type="submit" content={'Add contact'} className="btn" />,
-  submit = () => {},
 }) {
   const existingContactsArr = useSelector(
     state => Object.values(state.contacts?.queries)[0]?.data
@@ -40,7 +39,6 @@ export function ContactForm({
   return (
     <Form
       onSubmit={e => {
-        submit();
         e.preventDefault();
         formSubmitHandler({
           name: e.target.name.value,

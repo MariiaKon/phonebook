@@ -19,6 +19,11 @@ export function Modal() {
 
   const editContactHandler = async contact => {
     try {
+      if (contact.name.trim() === '' || contact.number.trim() === '') {
+        alert('Please, fill all the fields');
+        return;
+      }
+
       await editContact(contact);
       closeModal();
     } catch (error) {
