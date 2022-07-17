@@ -15,8 +15,7 @@ export const Form = styled.form`
 export const Label = styled.label`
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  justify-content: flex-end;
   width: 100%;
   margin-bottom: 20px;
 `;
