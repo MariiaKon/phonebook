@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useAddContactMutation } from 'redux/contactReducer';
+import { useAddContactMutation } from 'redux/contacts/contactReducer';
 
 export const useFormHandler = initValues => {
   const [addContact] = useAddContactMutation();

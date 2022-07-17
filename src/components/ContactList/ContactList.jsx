@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { FaUserTimes, FaUserEdit, FaUser, FaPhoneSquare } from 'react-icons/fa';
+import { FiUser, FiPhone, FiEdit, FiTrash2 } from 'react-icons/fi';
 import { Button } from 'components/Button/Button';
 import {
   Contacts,
@@ -9,7 +9,7 @@ import {
   Info,
   ButtonsBox,
 } from './ContactList.styled';
-import { useDeleteContactMutation } from 'redux/contactReducer';
+import { useDeleteContactMutation } from 'redux/contacts/contactReducer';
 
 export function ContactList({ contacts }) {
   const [deleteContact, result] = useDeleteContactMutation();
@@ -22,7 +22,7 @@ export function ContactList({ contacts }) {
           <ContactItem key={contact.id}>
             <InfoBox>
               <Info>
-                <FaUser
+                <FiUser
                   style={{
                     size: '16px',
                     top: '2px',
@@ -31,7 +31,7 @@ export function ContactList({ contacts }) {
                 {contact.name}
               </Info>
               <Info>
-                <FaPhoneSquare
+                <FiPhone
                   style={{
                     size: '16px',
                     top: '2px',
@@ -47,7 +47,7 @@ export function ContactList({ contacts }) {
                 onClick={() => navigate(`/edit/${contact.id}`)}
                 disabled={result.isLoading}
                 content={
-                  <FaUserEdit
+                  <FiEdit
                     style={{
                       size: '20px',
                       top: '8px',
@@ -63,7 +63,7 @@ export function ContactList({ contacts }) {
                 }}
                 disabled={result.isLoading}
                 content={
-                  <FaUserTimes
+                  <FiTrash2
                     style={{
                       size: '20px',
                       top: '8px',

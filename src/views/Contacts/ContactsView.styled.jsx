@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #282828db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Container = styled.div`
   position: relative;
   display: flex;
@@ -15,11 +27,11 @@ export const Container = styled.div`
   background: #c3c0c090;
 `;
 
-export const PhonebookTitle = styled.h1`
+export const PrimaryTitle = styled.h1`
   text-align: center;
 `;
 
-export const ContactsTitle = styled.h2`
+export const SecondaryTitle = styled.h2`
   text-align: center;
-  font-size: 1.8em;
+  font-size: 1.7em;
 `;

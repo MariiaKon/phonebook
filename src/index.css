@@ -29,7 +29,6 @@ button {
   min-width: fit-content;
   width: 40px;
   height: 40px;
-  padding: 1px 6px;
   font-size: 24px;
 }
 
@@ -39,14 +38,16 @@ button:hover, button:active, button:focus {
 }
 
 svg {
-  position: absolute;
+ position: absolute;
  top: 0;
  left: 0;
 }
 
 .btn {
   height: 24px;
-  width: 50%;
+  width: 30%;
+  max-width: 80px;
   font-weight: 600;
   font-size: 12px;
+  padding: 4px 20px;
 }

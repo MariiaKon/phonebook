@@ -1,8 +1,8 @@
-import { FaSearch } from 'react-icons/fa';
-import { Label, Input, FilterForm } from './ContactForm.styled';
-import { DebounceInput } from 'react-debounce-input';
 import { useDispatch } from 'react-redux';
-import { filterContacts } from 'redux/contactReducer';
+import { filterContacts } from 'redux/contacts/contactReducer';
+import { DebounceInput } from 'react-debounce-input';
+import { FiSearch } from 'react-icons/fi';
+import { Label, Input, FilterForm } from './Form.styled';
 
 export function Filter() {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ export function Filter() {
   return (
     <FilterForm action="">
       <Label>
-        <FaSearch size={'24px'} />
+        <FiSearch size={'24px'} />
         <DebounceInput
           element={Input}
           debounceTimeout={300}
