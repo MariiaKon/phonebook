@@ -45,6 +45,7 @@ export function ContactList({ contacts }) {
               <Button
                 type="button"
                 onClick={() => navigate(`/edit/${contact.id}`)}
+                disabled={result.isLoading}
                 content={
                   <FaUserEdit
                     style={{

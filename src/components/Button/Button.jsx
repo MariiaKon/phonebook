@@ -5,9 +5,15 @@ export function Button({
   content = '',
   className = '',
   onClick,
+  disabled = false,
 }) {
   return (
-    <button type={type} className={className} onClick={onClick}>
+    <button
+      type={type}
+      className={className}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {content}
     </button>
   );
@@ -18,4 +24,5 @@ Button.propTypes = {
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   className: PropTypes.string,
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };
