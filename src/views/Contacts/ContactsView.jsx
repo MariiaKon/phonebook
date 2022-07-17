@@ -8,9 +8,9 @@ import { PrimaryTitle, SecondaryTitle, Container } from './ContactsView.styled';
 
 export default function ContactsView() {
   const { data } = useGetContactsQuery();
-  const filter = useSelector(state => state.filter.filter);
+  const filter = useSelector(state => state.filter.filter.toLowerCase());
   const filteredContacts = data?.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+    contact.name.toLowerCase().includes(filter)
   );
 
   return (

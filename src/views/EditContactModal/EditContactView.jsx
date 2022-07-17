@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { FiUser, FiPhone } from 'react-icons/fi';
 import InputMask from 'react-input-mask';
 import { Container, Overlay } from 'views/Contacts/ContactsView.styled';
@@ -8,14 +9,17 @@ import { Button } from 'components/Button/Button';
 import {
   useGetContactByIdQuery,
   useEditContactMutation,
+  filterContacts,
 } from 'redux/contacts/contactReducer';
 
 export default function Modal() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { contactId } = useParams();
   const { data } = useGetContactByIdQuery(contactId);
   const closeModal = () => {
     navigate('/contacts');
+    dispatch(filterContacts(''));
   };
   const [editContact] = useEditContactMutation();
 
@@ -86,13 +90,3 @@ export default function Modal() {
     </Overlay>
   );
 }
-
-// onSubmit={e => {
-//   e.preventDefault();
-//   editContactHandler({
-//     ...data,
-//     name: e.target.name.value,
-//     number: e.target.number.value,
-//   });
-//   closeModal();
-// }}
