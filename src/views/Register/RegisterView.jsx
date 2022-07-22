@@ -6,7 +6,6 @@ import {
 import { FormElement } from 'components/Forms/FormElement';
 import { Button } from 'components/Button/Button';
 import { Label, Input } from 'components/Forms/Form.styled';
-import { FiUserPlus, FiAtSign, FiUnlock } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
 export default function RegisterForm() {
@@ -37,34 +36,31 @@ export default function RegisterForm() {
           children={
             <>
               <Label>
-                <FiUserPlus size={'24px'} />
                 <Input
                   name="name"
                   type={'text'}
-                  placeholder={'Enter name'}
                   required
                   autoComplete="off"
-                ></Input>
+                />
+                <span>Enter name</span>
               </Label>
               <Label>
-                <FiAtSign size={'24px'} />
                 <Input
                   name="email"
                   type={'email'}
-                  placeholder={'Enter email'}
                   required
                   autoComplete="off"
-                ></Input>
+                />
+                <span>Enter email</span>
               </Label>
               <Label>
-                <FiUnlock size={'24px'} />
                 <Input
                   name="password"
                   type={'password'}
-                  placeholder={'Enter password'}
                   required
                   autoComplete="off"
-                ></Input>
+                />
+                <span>Enter password</span>
               </Label>
             </>
           }

@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { FiUser, FiPhone, FiEdit, FiTrash2 } from 'react-icons/fi';
+import { RiBallPenLine, RiCloseLine } from 'react-icons/ri';
 import { Button } from 'components/Button/Button';
 import {
   Contacts,
   ContactItem,
   InfoBox,
   Info,
+  Icon,
   ButtonsBox,
 } from './ContactList.styled';
 import { useDeleteContactMutation } from 'redux/contacts/contactReducer';
@@ -21,24 +22,19 @@ export function ContactList({ contacts }) {
         return (
           <ContactItem key={contact.id}>
             <InfoBox>
-              <Info>
-                <FiUser
-                  style={{
-                    size: '16px',
-                    top: '2px',
-                  }}
-                />
-                {contact.name}
-              </Info>
-              <Info>
-                <FiPhone
-                  style={{
-                    size: '16px',
-                    top: '2px',
-                  }}
-                />
-                {contact.number}
-              </Info>
+              <Icon
+                style={{
+                  background: `#${(
+                    Math.floor(Math.random() * 220090040) * Math.random()
+                  )
+                    .toString(16)
+                    .slice(0, 6)}`,
+                }}
+              >
+                {contact.name[0].toUpperCase()}
+              </Icon>
+              <Info>{contact.name}</Info>
+              <Info>{contact.number}</Info>
             </InfoBox>
 
             <ButtonsBox>
@@ -46,15 +42,7 @@ export function ContactList({ contacts }) {
                 type="button"
                 onClick={() => navigate(`/edit/${contact.id}`)}
                 disabled={result.isLoading}
-                content={
-                  <FiEdit
-                    style={{
-                      size: '20px',
-                      top: '8px',
-                      left: '8px',
-                    }}
-                  />
-                }
+                content={<RiBallPenLine style={{ top: '6px', left: '6px' }} />}
               />
               <Button
                 type="button"
@@ -63,11 +51,12 @@ export function ContactList({ contacts }) {
                 }}
                 disabled={result.isLoading}
                 content={
-                  <FiTrash2
+                  <RiCloseLine
                     style={{
-                      size: '20px',
-                      top: '8px',
-                      left: '8px',
+                      top: '4px',
+                      left: '4px',
+                      height: '1.25em',
+                      width: '1.25em',
                     }}
                   />
                 }

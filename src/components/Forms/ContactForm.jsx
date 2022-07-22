@@ -1,6 +1,5 @@
 import { FormElement } from './FormElement';
 import { Label, Input } from './Form.styled';
-import { FiUserPlus, FiPhone } from 'react-icons/fi';
 import InputMask from 'react-input-mask';
 import { useFormHandler } from 'hooks/useFomHandler';
 
@@ -26,9 +25,7 @@ export function ContactForm({
       children={
         <>
           <Label>
-            <FiUserPlus size={'24px'} />
             <Input
-              placeholder="Enter name"
               type="text"
               name="name"
               pattern="^[a-zA-Zа-яА-Я]+(([' - .][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -37,12 +34,11 @@ export function ContactForm({
               defaultValue={initValues.name}
               autoComplete="off"
             />
+            <span>Name</span>
           </Label>
           <Label>
-            <FiPhone size={'24px'} />
-            <InputMask mask="999-999-9999">
+            <InputMask mask="999-999-9999" maskChar="*">
               <Input
-                placeholder="XXX-XXX-XXXX"
                 type="tel"
                 name="number"
                 title="Phone number must be digits"
@@ -51,6 +47,7 @@ export function ContactForm({
                 autoComplete="off"
               />
             </InputMask>
+            <span>Number</span>
           </Label>
         </>
       }

@@ -6,7 +6,6 @@ import {
 import { FormElement } from 'components/Forms/FormElement';
 import { Label, Input } from 'components/Forms/Form.styled';
 import { useNavigate } from 'react-router-dom';
-import { FiAtSign, FiUnlock } from 'react-icons/fi';
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -35,24 +34,22 @@ export default function LoginForm() {
           children={
             <>
               <Label>
-                <FiAtSign size={'24px'} />
                 <Input
                   name="email"
                   type={'email'}
-                  placeholder={'Enter email'}
                   required
                   autoComplete="off"
-                ></Input>
+                />
+                <span>Email</span>
               </Label>
               <Label>
-                <FiUnlock size={'24px'} />
                 <Input
                   name="password"
                   type={'password'}
-                  placeholder={'Enter password'}
                   required
                   autoComplete="off"
-                ></Input>
+                />
+                <span>Password</span>
               </Label>
             </>
           }
