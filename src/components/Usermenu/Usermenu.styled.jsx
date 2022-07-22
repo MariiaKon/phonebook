@@ -17,5 +17,5 @@ export const Header = styled.header`
 export const Login = styled.div`
   width: fit-content;
   font-weight: 500;
-  color: #fff;
+  color: #fadccd;
 `;

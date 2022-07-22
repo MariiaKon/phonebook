@@ -5,11 +5,13 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  outline: none;
 }
 
 html {
-      min-height: 100vh;
-      background: rgb(75, 75, 75);
+  min-height: 100vh;
+  background: #0d0c0c;
+  color: #fadccd;
 }
 
 body {
@@ -23,18 +25,22 @@ body {
 
 button {
   position: relative;
-  background-color: #fff;
-  border: 1px solid #c3c0c0;
+  background-color: #dc5a28;
+  color: #fadccd;
+  border: 1px solid #964628;
   border-radius: 5px;
   min-width: fit-content;
   width: 40px;
   height: 40px;
   font-size: 24px;
+  transition: 250ms ease-in-out;
 }
 
 button:hover, button:active, button:focus {
-  background-color: #dadada;
-  outline: 2px solid #5788eb;
+  background: #fadccd;
+  color: #964628;
+  border: 1px solid #964628;
+  box-shadow: 0 0 4px 0 #0d0c0c;
 }
 
 svg {

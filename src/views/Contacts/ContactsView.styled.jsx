@@ -22,16 +22,18 @@ export const Container = styled.div`
   max-width: 600px;
   width: calc(100vw - 40px);
   min-width: 320px;
-  border: 1px solid #c3c0c0;
+  border: 1px solid #fadccd;
   border-radius: 10px;
-  background: #c3c0c090;
+  background: #78321e;
 `;
 
 export const PrimaryTitle = styled.h1`
   text-align: center;
+  text-shadow: #0d0c0c 0 0 4px;
 `;
 
 export const SecondaryTitle = styled.h2`
   text-align: center;
+  text-shadow: #0d0c0c 0 0 4px;
   font-size: 1.7em;
 `;
