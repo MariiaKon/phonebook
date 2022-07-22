@@ -1,8 +1,4 @@
-import {
-  Overlay,
-  Container,
-  SecondaryTitle,
-} from 'views/Contacts/ContactsView.styled';
+import { Overlay, Container, SecondaryTitle } from 'views/commonCss.styled';
 
 export function Loader() {
   return (

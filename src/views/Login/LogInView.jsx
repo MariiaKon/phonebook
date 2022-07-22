@@ -1,8 +1,4 @@
-import {
-  Container,
-  SecondaryTitle,
-  Overlay,
-} from 'views/Contacts/ContactsView.styled';
+import { Container, SecondaryTitle, Overlay } from 'views/commonCss.styled';
 import { FormElement } from 'components/Forms/FormElement';
 import { Label, Input } from 'components/Forms/Form.styled';
 import { useNavigate } from 'react-router-dom';

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import InputMask from 'react-input-mask';
-import { Container, Overlay } from 'views/Contacts/ContactsView.styled';
+import { Container, Overlay } from 'views/commonCss.styled';
 import { Label, Input } from 'components/Forms/Form.styled';
 import { FormElement } from 'components/Forms/FormElement';
 import { Button } from 'components/Button/Button';

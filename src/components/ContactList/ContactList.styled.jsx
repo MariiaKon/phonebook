@@ -21,6 +21,10 @@ export const ContactItem = styled.li`
   &:nth-of-type(even) {
     background-color: #b98775;
   }
+
+  :hover > div > div {
+    transform: scale(1.1);
+  }
 `;
 
 export const ButtonsBox = styled.div`

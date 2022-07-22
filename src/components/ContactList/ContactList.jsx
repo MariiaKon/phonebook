@@ -24,8 +24,8 @@ export function ContactList({ contacts }) {
             <InfoBox>
               <Icon
                 style={{
-                  background: `#${(
-                    Math.floor(Math.random() * 220090040) * Math.random()
+                  background: `#${Math.floor(
+                    Math.random() * 100000000 * contact.id
                   )
                     .toString(16)
                     .slice(0, 6)}`,

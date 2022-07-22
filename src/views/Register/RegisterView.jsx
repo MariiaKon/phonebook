@@ -2,7 +2,7 @@ import {
   Container,
   SecondaryTitle,
   Overlay,
-} from 'views/Contacts/ContactsView.styled';
+} from 'views/commonCss.styled';
 import { FormElement } from 'components/Forms/FormElement';
 import { Button } from 'components/Button/Button';
 import { Label, Input } from 'components/Forms/Form.styled';

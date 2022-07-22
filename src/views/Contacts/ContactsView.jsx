@@ -4,7 +4,7 @@ import { ContactForm } from 'components/Forms/ContactForm';
 import { Filter } from 'components/Forms/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Usermenu } from 'components/Usermenu/Usermenu';
-import { PrimaryTitle, SecondaryTitle, Container } from './ContactsView.styled';
+import { PrimaryTitle, SecondaryTitle, Container } from 'views/commonCss.styled';
 
 export default function ContactsView() {
   const { data } = useGetContactsQuery();

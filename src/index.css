@@ -25,9 +25,10 @@ body {
 
 button {
   position: relative;
-  background-color: #dc5a28;
-  color: #fadccd;
+  background: #fadccd;
+  color: #964628;
   border: 1px solid #964628;
+  box-shadow:  0 0 4px 0 #0d0c0c;
   border-radius: 5px;
   min-width: fit-content;
   width: 40px;
@@ -37,10 +38,10 @@ button {
 }
 
 button:hover, button:active, button:focus {
-  background: #fadccd;
-  color: #964628;
+  background-color: #dc5a28;
+  color: #fadccd;
   border: 1px solid #964628;
-  box-shadow: 0 0 4px 0 #0d0c0c;
+  box-shadow: 0 0 2px 1px #fadccd;
 }
 
 svg {
