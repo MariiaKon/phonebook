@@ -1,18 +1,17 @@
-import {
-  Container,
-  SecondaryTitle,
-  Overlay,
-} from 'views/commonCss.styled';
+import { Container, SecondaryTitle, Overlay } from 'views/commonCss.styled';
 import { FormElement } from 'components/Forms/FormElement';
 import { Button } from 'components/Button/Button';
 import { Label, Input } from 'components/Forms/Form.styled';
 import { useNavigate } from 'react-router-dom';
+import { registerUser } from 'redux/auth/userSlice';
+import { useDispatch } from 'react-redux';
 
 export default function RegisterForm() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const registerContactHandler = async user => {
     try {
-      await console.log(user);
+      await dispatch(registerUser(user));
     } catch (error) {
       console.log(error);
     }
@@ -36,12 +35,7 @@ export default function RegisterForm() {
           children={
             <>
               <Label>
-                <Input
-                  name="name"
-                  type={'text'}
-                  required
-                  autoComplete="off"
-                />
+                <Input name="name" type={'text'} required autoComplete="off" />
                 <span>Enter name</span>
               </Label>
               <Label>

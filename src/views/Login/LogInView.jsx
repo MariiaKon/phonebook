@@ -2,12 +2,15 @@ import { Container, SecondaryTitle, Overlay } from 'views/commonCss.styled';
 import { FormElement } from 'components/Forms/FormElement';
 import { Label, Input } from 'components/Forms/Form.styled';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from 'redux/auth/userSlice';
+import { useDispatch } from 'react-redux';
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const LoginFormHandler = async user => {
     try {
-      await console.log(user);
+      await dispatch(loginUser(user));
     } catch (error) {
       console.log(error);
     }
