@@ -5,10 +5,10 @@ import { Container, Overlay } from 'views/commonCss.styled';
 import { Label, Input } from 'components/Forms/Form.styled';
 import { FormElement } from 'components/Forms/FormElement';
 import { Button } from 'components/Button/Button';
+import { filterContacts } from 'redux/contacts/filterSlice';
 import {
   useGetContactByIdQuery,
   useEditContactMutation,
-  filterContacts,
 } from 'redux/contacts/contactReducer';
 
 export default function Modal() {

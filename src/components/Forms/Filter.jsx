@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { filterContacts } from 'redux/contacts/contactReducer';
+import { filterContacts } from 'redux/contacts/filterSlice';
 import { DebounceInput } from 'react-debounce-input';
 import { Label, Input, FilterForm } from './Form.styled';
 
