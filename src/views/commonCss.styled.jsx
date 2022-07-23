@@ -2,18 +2,16 @@ import styled from 'styled-components';
 
 export const Overlay = styled.div`
   position: absolute;
-  top: 0;
+  top: 60px;
   bottom: 0;
   right: 0;
   left: 0;
-  background: #282828db;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const Container = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,4 +34,18 @@ export const SecondaryTitle = styled.h2`
   text-align: center;
   text-shadow: #0d0c0c 0 0 4px;
   font-size: 1.7em;
+`;
+
+export const Icon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #964628;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fadccd;
+  text-shadow: #964628 0 0 4px;
 `;

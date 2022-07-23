@@ -24,17 +24,20 @@ body {
 }
 
 button {
-  position: relative;
-  background: #fadccd;
-  color: #964628;
-  border: 1px solid #964628;
-  box-shadow:  0 0 4px 0 #0d0c0c;
-  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: fit-content;
   width: 40px;
   height: 40px;
   font-size: 24px;
+  background: #fadccd;
+  color: #964628;
+  border: 1px solid #964628;
+  border-radius: 5px;
+  box-shadow:  0 0 4px 0 #0d0c0c;
   transition: 250ms ease-in-out;
+  cursor: pointer;
 }
 
 button:hover, button:active, button:focus {
@@ -42,12 +45,6 @@ button:hover, button:active, button:focus {
   color: #fadccd;
   border: 1px solid #964628;
   box-shadow: 0 0 2px 1px #fadccd;
-}
-
-svg {
- position: absolute;
- top: 0;
- left: 0;
 }
 
 .btn {

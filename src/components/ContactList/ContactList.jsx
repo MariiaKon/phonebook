@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { RiBallPenLine, RiCloseLine } from 'react-icons/ri';
 import { Button } from 'components/Button/Button';
+import { Icon } from 'views/commonCss.styled';
 import {
   Contacts,
   ContactItem,
   InfoBox,
   Info,
-  Icon,
   ButtonsBox,
 } from './ContactList.styled';
 import { useDeleteContactMutation } from 'redux/contacts/contactReducer';
@@ -24,6 +24,7 @@ export function ContactList({ contacts }) {
             <InfoBox>
               <Icon
                 style={{
+                  gridArea: '1 / 1 / 3 / 2',
                   background: `#${Math.floor(
                     Math.random() * 100000000 * contact.id
                   )

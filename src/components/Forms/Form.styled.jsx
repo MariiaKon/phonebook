@@ -66,7 +66,7 @@ export const Input = styled.input`
 
 export const FilterForm = styled.form`
   background: inherit;
-  margin: 10px auto;
+  margin: 10px 0 0 0;
   width: 90%;
 
   & input {

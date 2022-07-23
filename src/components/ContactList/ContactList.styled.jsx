@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Contacts = styled.ul`
-  margin: auto;
   width: 90%;
   list-style: none;
   border: 1px solid #fadccd;
@@ -13,6 +12,8 @@ export const ContactItem = styled.li`
   justify-content: space-between;
   padding: 4px;
   font-size: 18px;
+  border: 1px solid transparent;
+  transition: 250ms ease-in-out;
 
   &:nth-of-type(odd) {
     background-color: #9b7369;
@@ -20,6 +21,10 @@ export const ContactItem = styled.li`
 
   &:nth-of-type(even) {
     background-color: #b98775;
+  }
+
+  :hover {
+    border: 1px solid #fadccd7f;
   }
 
   :hover > div > div {
@@ -52,17 +57,17 @@ export const Info = styled.div`
   }
 `;
 
-export const Icon = styled.div`
-  grid-area: 1 / 1 / 3 / 2;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid #0d0c0c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: 700;
-  color: #fadccd;
-  text-shadow: #0d0c0c 0 0 4px;
-`;
+// export const Icon = styled.div`
+//   grid-area: 1 / 1 / 3 / 2;
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   border: 1px solid #0d0c0c;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: 24px;
+//   font-weight: 700;
+//   color: #fadccd;
+//   text-shadow: #0d0c0c 0 0 4px;
+// `;

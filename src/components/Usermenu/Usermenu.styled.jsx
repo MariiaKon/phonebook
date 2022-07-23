@@ -18,4 +18,7 @@ export const Login = styled.div`
   width: fit-content;
   font-weight: 500;
   color: #fadccd;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;

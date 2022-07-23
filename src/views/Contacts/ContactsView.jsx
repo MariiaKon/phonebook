@@ -3,8 +3,11 @@ import { useGetContactsQuery } from 'redux/contacts/contactReducer';
 import { ContactForm } from 'components/Forms/ContactForm';
 import { Filter } from 'components/Forms/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
-import { Usermenu } from 'components/Usermenu/Usermenu';
-import { PrimaryTitle, SecondaryTitle, Container } from 'views/commonCss.styled';
+import {
+  PrimaryTitle,
+  SecondaryTitle,
+  Container,
+} from 'views/commonCss.styled';
 
 export default function ContactsView() {
   const { data } = useGetContactsQuery();
@@ -14,20 +17,17 @@ export default function ContactsView() {
   );
 
   return (
-    <>
-      <Usermenu />
-      <Container>
-        <PrimaryTitle>Phonebook</PrimaryTitle>
-        <ContactForm />
+    <Container>
+      <PrimaryTitle>Phonebook</PrimaryTitle>
+      <ContactForm />
 
-        <SecondaryTitle>Contacts</SecondaryTitle>
-        <Filter />
-        {filter === '' ? (
-          <ContactList contacts={data} />
-        ) : (
-          <ContactList contacts={filteredContacts} />
-        )}
-      </Container>
-    </>
+      <SecondaryTitle>Contacts</SecondaryTitle>
+      <Filter />
+      {filter === '' ? (
+        <ContactList contacts={data} />
+      ) : (
+        <ContactList contacts={filteredContacts} />
+      )}
+    </Container>
   );
 }
