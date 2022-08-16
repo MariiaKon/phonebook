@@ -25,9 +25,7 @@ export function ContactList({ contacts }) {
               <Icon
                 style={{
                   gridArea: '1 / 1 / 3 / 2',
-                  background: `#${Math.floor(
-                    Math.random() * 100000000 * contact.id
-                  )
+                  background: `#${Math.floor(167198 * contact.id)
                     .toString(16)
                     .slice(0, 6)}`,
                 }}
