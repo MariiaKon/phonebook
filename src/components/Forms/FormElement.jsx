@@ -5,11 +5,7 @@ import { Button } from 'components/Button/Button';
 export function FormElement({
   initValues = {},
   btnContent = '',
-  onSubmit = function (e, formHandler, successHandler) {
-    e.preventDefault();
-    formHandler({});
-    successHandler(e);
-  },
+  onSubmit,
   children,
 }) {
   return (
