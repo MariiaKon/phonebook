@@ -1,8 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
-import { useSelector } from 'react-redux';
+import { lazy, Suspense, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import authOperations from 'redux/auth/auth-operations.js';
 import { Loader } from 'components/Loader/Loader';
-import img from 'images/phonebook-welcome.png';
 const Usermenu = lazy(() => import('components/Usermenu/Usermenu'));
 const RegisterForm = lazy(() => import('views/Register/RegisterView'));
 const LoginForm = lazy(() => import('views/Login/LogInView'));
@@ -10,7 +10,13 @@ const ContactsView = lazy(() => import('views/Contacts/ContactsView'));
 const Modal = lazy(() => import('views/EditContactModal/EditContactView'));
 
 export function App() {
-  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
   return (
     <BrowserRouter basename="/goit-react-hw-08-phonebook">
@@ -23,22 +29,6 @@ export function App() {
             </Suspense>
           }
         >
-          <Route
-            index
-            element={
-              <Suspense fallback={<Loader />}>
-                <main
-                  style={{
-                    height: '90vh',
-                    backgroundImage: `linear-gradient(90deg, #38170a83, #38170a83), url(${img})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover',
-                  }}
-                />
-              </Suspense>
-            }
-          />
           <Route
             path="register"
             element={
