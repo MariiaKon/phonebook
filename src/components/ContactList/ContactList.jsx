@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { RiBallPenLine, RiCloseLine } from 'react-icons/ri';
+import contactsOperations from 'redux/contacts/contacts-operations';
 import { Button } from 'components/Button/Button';
 import { Icon } from 'views/commonCss.styled';
 import {
@@ -10,61 +13,70 @@ import {
   Info,
   ButtonsBox,
 } from './ContactList.styled';
-import { useDeleteContactMutation } from 'redux/contacts/contactReducer';
 
 export function ContactList({ contacts }) {
-  const [deleteContact, result] = useDeleteContactMutation();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [contact, setContact] = useState(null);
 
   return (
-    <Contacts>
-      {contacts?.map(contact => {
-        return (
-          <ContactItem key={contact.id}>
-            <InfoBox>
-              <Icon
-                style={{
-                  gridArea: '1 / 1 / 3 / 2',
-                  background: `#${Math.floor(167198 * contact.id)
-                    .toString(16)
-                    .slice(0, 6)}`,
-                }}
-              >
-                {contact.name[0].toUpperCase()}
-              </Icon>
-              <Info>{contact.name}</Info>
-              <Info>{contact.number}</Info>
-            </InfoBox>
+    <>
+      <Contacts>
+        {contacts?.map(contact => {
+          return (
+            <ContactItem key={contact.id}>
+              <InfoBox>
+                <Icon
+                  style={{
+                    gridArea: '1 / 1 / 3 / 2',
+                    background: `#${(
+                      parseInt(contact.id, 16) * parseInt(contact.id, 10)
+                    )
+                      .toString(16)
+                      .slice(2, 8)}`,
+                  }}
+                >
+                  {contact.name[0].toUpperCase()}
+                </Icon>
+                <Info>{contact.name}</Info>
+                <Info>{contact.number}</Info>
+              </InfoBox>
 
-            <ButtonsBox>
-              <Button
-                type="button"
-                onClick={() => navigate(`/edit/${contact.id}`)}
-                disabled={result.isLoading}
-                content={<RiBallPenLine style={{ top: '6px', left: '6px' }} />}
-              />
-              <Button
-                type="button"
-                onClick={() => {
-                  deleteContact(contact.id);
-                }}
-                disabled={result.isLoading}
-                content={
-                  <RiCloseLine
-                    style={{
-                      top: '4px',
-                      left: '4px',
-                      height: '1.25em',
-                      width: '1.25em',
-                    }}
-                  />
-                }
-              />
-            </ButtonsBox>
-          </ContactItem>
-        );
-      })}
-    </Contacts>
+              <ButtonsBox>
+                <Button /* edit btn */
+                  type="button"
+                  onClick={() => {
+                    navigate(`/contacts/edit/${contact.id}`);
+                    setContact(contact);
+                  }}
+                  content={
+                    <RiBallPenLine style={{ top: '6px', left: '6px' }} />
+                  }
+                />
+                <Button /* delete btn */
+                  type="button"
+                  onClick={() => {
+                    dispatch(contactsOperations.deleteContact(contact.id));
+                  }}
+                  content={
+                    <RiCloseLine
+                      style={{
+                        top: '4px',
+                        left: '4px',
+                        height: '1.25em',
+                        width: '1.25em',
+                      }}
+                    />
+                  }
+                />
+              </ButtonsBox>
+            </ContactItem>
+          );
+        })}
+      </Contacts>
+
+      <Outlet context={[contact]} />
+    </>
   );
 }
 
