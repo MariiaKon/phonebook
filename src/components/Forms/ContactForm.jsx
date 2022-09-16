@@ -1,7 +1,7 @@
 import { FormElement } from './FormElement';
 import { Label, Input } from './Form.styled';
 import InputMask from 'react-input-mask';
-import { useFormHandler } from 'hooks/useFomHandler';
+import { useFormHandler } from 'hooks/useFormHandler';
 
 export function ContactForm({
   initValues = {

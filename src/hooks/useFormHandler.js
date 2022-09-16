@@ -1,14 +1,12 @@
 import { useSelector } from 'react-redux';
-import { useAddContactMutation } from 'redux/contacts/contactReducer';
+import contactsOperations from 'redux/contacts/contacts-operations';
+import { useDispatch } from 'react-redux';
 
 export const useFormHandler = initValues => {
-  const [addContact] = useAddContactMutation();
+  const dispatch = useDispatch();
+  const existingContactsArr = useSelector(state => state.contacts.items);
 
-  const existingContactsArr = useSelector(
-    state => Object.values(state.contacts?.queries)[0]?.data
-  );
-
-  const formSubmitHandler = async contact => {
+  const formSubmitHandler = contact => {
     const existingContacts = existingContactsArr.map(contact => contact.name);
 
     if (existingContacts.includes(contact.name)) {
@@ -17,15 +15,14 @@ export const useFormHandler = initValues => {
     }
 
     try {
-      await addContact(contact);
-    } catch (error) {
-      console.log(error);
-    }
+      dispatch(contactsOperations.addContact(contact));
+    } catch (error) {}
   };
 
   const reset = e => {
     e.target.name.value = initValues.name;
     e.target.number.value = initValues.number;
+    dispatch(contactsOperations.getContacts());
   };
 
   return { formSubmitHandler, reset };
