@@ -9,6 +9,7 @@ export const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #0d0c0cc7;
 `;
 
 export const Container = styled.div`
