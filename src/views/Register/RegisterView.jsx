@@ -1,20 +1,22 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Container, SecondaryTitle, Overlay } from 'views/commonCss.styled';
 import { FormElement } from 'components/Forms/FormElement';
 import { Button } from 'components/Button/Button';
 import { Label, Input } from 'components/Forms/Form.styled';
-import { useNavigate } from 'react-router-dom';
-import { registerUser } from 'redux/auth/userSlice';
-import { useDispatch } from 'react-redux';
+import authOperations from 'redux/auth/auth-operations.js';
 
 export default function RegisterForm() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const registerContactHandler = async user => {
-    try {
-      await dispatch(registerUser(user));
-    } catch (error) {
-      console.log(error);
-    }
+  const dispatch = useDispatch();
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const submitHandler = e => {
+    e.preventDefault();
+    dispatch(authOperations.register({ name, email, password }));
   };
 
   return (
@@ -22,24 +24,27 @@ export default function RegisterForm() {
       <Container>
         <SecondaryTitle>Sign Up</SecondaryTitle>
         <FormElement
-          onSubmit={e => {
-            e.preventDefault();
-            registerContactHandler({
-              name: e.target.name.value,
-              email: e.target.email.value,
-              password: e.target.password.value,
-            });
-            navigate('/contacts');
-          }}
+          onSubmit={submitHandler}
           btnContent={'Sign Up'}
           children={
             <>
               <Label>
-                <Input name="name" type={'text'} required autoComplete="off" />
+                <Input
+                  onChange={e => {
+                    setName(e.target.value);
+                  }}
+                  name="name"
+                  type={'text'}
+                  required
+                  autoComplete="off"
+                />
                 <span>Enter name</span>
               </Label>
               <Label>
                 <Input
+                  onChange={e => {
+                    setEmail(e.target.value);
+                  }}
                   name="email"
                   type={'email'}
                   required
@@ -49,6 +54,9 @@ export default function RegisterForm() {
               </Label>
               <Label>
                 <Input
+                  onChange={e => {
+                    setPassword(e.target.value);
+                  }}
                   name="password"
                   type={'password'}
                   required
