@@ -1,19 +1,18 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Container, SecondaryTitle, Overlay } from 'views/commonCss.styled';
 import { FormElement } from 'components/Forms/FormElement';
 import { Label, Input } from 'components/Forms/Form.styled';
-import { useNavigate } from 'react-router-dom';
-import { loginUser } from 'redux/auth/userSlice';
-import { useDispatch } from 'react-redux';
+import authOperations from 'redux/auth/auth-operations.js';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const LoginFormHandler = async user => {
-    try {
-      await dispatch(loginUser(user));
-    } catch (error) {
-      console.log(error);
-    }
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const submitHandler = e => {
+    e.preventDefault();
+    dispatch(authOperations.login({ email, password }));
   };
 
   return (
@@ -21,19 +20,15 @@ export default function LoginForm() {
       <Container>
         <SecondaryTitle>Log In</SecondaryTitle>
         <FormElement
-          onSubmit={e => {
-            e.preventDefault();
-            LoginFormHandler({
-              email: e.target.email.value,
-              password: e.target.password.value,
-            });
-            navigate('/contacts');
-          }}
+          onSubmit={submitHandler}
           btnContent={'Log In'}
           children={
             <>
               <Label>
                 <Input
+                  onChange={e => {
+                    setEmail(e.target.value);
+                  }}
                   name="email"
                   type={'email'}
                   required
@@ -43,6 +38,9 @@ export default function LoginForm() {
               </Label>
               <Label>
                 <Input
+                  onChange={e => {
+                    setPassword(e.target.value);
+                  }}
                   name="password"
                   type={'password'}
                   required
