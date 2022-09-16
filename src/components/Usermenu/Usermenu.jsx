@@ -1,42 +1,51 @@
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Outlet } from 'react-router-dom';
 import { RiUserLine } from 'react-icons/ri';
 import { Header, Login } from './Usermenu.styled';
 import { Button } from 'components/Button/Button';
 import { Icon } from 'views/commonCss.styled';
-import { logoutUser } from 'redux/auth/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import authOperations from 'redux/auth/auth-operations.js';
+import { Link } from 'react-router-dom';
 
 export default function Usermenu() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
-  const email = useSelector(state => state.user.email);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const name = useSelector(state => state.auth.user.name);
 
   return (
     <>
       <Header>
         {isLoggedIn ? (
           <>
-            <Login>
-              <Icon
-                style={{
-                  background: '#fadccd',
-                  color: '#964628',
+            <Link
+              to="/contacts"
+              style={{ fontWeight: '500', color: '#fadccd' }}
+            >
+              Contacts
+            </Link>
+            <div>
+              <Login>
+                Welcome,
+                <span style={{ textTransform: 'capitalize' }}>{name}</span>
+                <Icon
+                  style={{
+                    background: '#fadccd',
+                    color: '#964628',
+                  }}
+                >
+                  <RiUserLine />
+                </Icon>
+              </Login>
+              <Button
+                type="button"
+                content="Log Out"
+                className="btn"
+                onClick={() => {
+                  dispatch(authOperations.logout());
                 }}
-              >
-                <RiUserLine />
-              </Icon>
-              {email}
-            </Login>
-            <Button
-              type="button"
-              content="Log Out"
-              className="btn"
-              onClick={() => {
-                dispatch(logoutUser());
-                navigate('/register');
-              }}
-            ></Button>
+              ></Button>
+            </div>
           </>
         ) : (
           <>

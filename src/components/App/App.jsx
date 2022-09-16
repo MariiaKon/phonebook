@@ -3,6 +3,8 @@ import { lazy, Suspense, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations.js';
 import { Loader } from 'components/Loader/Loader';
+import { PrivateRoute } from 'components/PrivateRoute.js';
+import { PublicRoute } from 'components/PublicRoute.js';
 const Usermenu = lazy(() => import('components/Usermenu/Usermenu'));
 const RegisterForm = lazy(() => import('views/Register/RegisterView'));
 const LoginForm = lazy(() => import('views/Login/LogInView'));
@@ -56,19 +58,16 @@ export function App() {
                 <Navigate to="/register" />
               )
             }
-          />
-          <Route
-            path="edit/:contactId"
-            element={
-              isLoggedIn ? (
+          >
+            <Route
+              path="edit/:contactId"
+              element={
                 <Suspense fallback={<Loader />}>
                   <Modal />
                 </Suspense>
-              ) : (
-                <Navigate to="/register" />
-              )
-            }
-          />
+              }
+            />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
