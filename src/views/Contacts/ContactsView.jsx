@@ -1,5 +1,6 @@
-import { useSelector } from 'react-redux';
-import { useGetContactsQuery } from 'redux/contacts/contactReducer';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import contactsOperations from 'redux/contacts/contacts-operations.js';
 import { ContactForm } from 'components/Forms/ContactForm';
 import { Filter } from 'components/Forms/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
@@ -10,9 +11,15 @@ import {
 } from 'views/commonCss.styled';
 
 export default function ContactsView() {
-  const { data } = useGetContactsQuery();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(contactsOperations.getContacts());
+  }, [dispatch]);
+
+  const contacts = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.filter.filter.toLowerCase());
-  const filteredContacts = data?.filter(contact =>
+  const filteredContacts = contacts?.filter(contact =>
     contact.name.toLowerCase().includes(filter)
   );
 
@@ -24,7 +31,7 @@ export default function ContactsView() {
       <SecondaryTitle>Contacts</SecondaryTitle>
       <Filter />
       {filter === '' ? (
-        <ContactList contacts={data} />
+        <ContactList contacts={contacts} />
       ) : (
         <ContactList contacts={filteredContacts} />
       )}
