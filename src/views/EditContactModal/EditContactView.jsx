@@ -1,48 +1,36 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import InputMask from 'react-input-mask';
 import { Container, Overlay } from 'views/commonCss.styled';
 import { Label, Input } from 'components/Forms/Form.styled';
 import { FormElement } from 'components/Forms/FormElement';
 import { Button } from 'components/Button/Button';
-import { filterContacts } from 'redux/contacts/filterSlice';
-import {
-  useGetContactByIdQuery,
-  useEditContactMutation,
-} from 'redux/contacts/contactReducer';
+import contactsOperations from 'redux/contacts/contacts-operations';
 
 export default function Modal() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { contactId } = useParams();
-  const { data } = useGetContactByIdQuery(contactId);
+  const [contact] = useOutletContext();
+
   const closeModal = () => {
     navigate('/contacts');
-    dispatch(filterContacts(''));
-  };
-  const [editContact] = useEditContactMutation();
-
-  const editContactHandler = async contact => {
-    try {
-      await editContact(contact);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
     <Overlay>
       <Container>
-        {data && (
+        {contact && (
           <FormElement
             btnContent="Edit contact"
             onSubmit={e => {
               e.preventDefault();
-              editContactHandler({
-                ...data,
-                name: e.target.name.value,
-                number: e.target.number.value,
-              });
+              dispatch(
+                contactsOperations.editContact({
+                  ...contact,
+                  name: e.target.name.value,
+                  number: e.target.number.value,
+                })
+              );
               closeModal();
             }}
             children={
@@ -54,7 +42,7 @@ export default function Modal() {
                     pattern="^[a-zA-Zа-яА-Я]+(([' -\.\][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                     title="Name may contain only letters, apostrophe, dot, dash and spaces. For example Anne-Mary Mercer, Mr. Charles, Castelmore d'Artagnan"
                     required
-                    defaultValue={data.name}
+                    defaultValue={contact.name}
                     autoComplete="off"
                   />
                   <span>Edit name</span>
@@ -66,7 +54,7 @@ export default function Modal() {
                       name="number"
                       title="Phone number must be digits"
                       required
-                      defaultValue={data.number}
+                      defaultValue={contact.number}
                       autoComplete="off"
                     />
                   </InputMask>
