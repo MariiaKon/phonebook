@@ -1,10 +1,10 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations.js';
 import { Loader } from 'components/Loader/Loader';
-// import { PrivateRoute } from 'components/PrivateRoute.js';
-// import { PublicRoute } from 'components/PublicRoute.js';
+import { PrivateRoute } from 'components/PrivateRoute.js';
+import { PublicRoute } from 'components/PublicRoute.js';
 const Usermenu = lazy(() => import('components/Usermenu/Usermenu'));
 const RegisterForm = lazy(() => import('views/Register/RegisterView'));
 const LoginForm = lazy(() => import('views/Login/LogInView'));
@@ -18,8 +18,6 @@ export function App() {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-
   return (
     <BrowserRouter basename="/goit-react-hw-08-phonebook">
       <Routes>
@@ -27,7 +25,9 @@ export function App() {
           path="/"
           element={
             <Suspense fallback={<Loader />}>
-              <Usermenu />
+              <PublicRoute>
+                <Usermenu />
+              </PublicRoute>
             </Suspense>
           }
         >
@@ -35,7 +35,9 @@ export function App() {
             path="register"
             element={
               <Suspense fallback={<Loader />}>
-                <RegisterForm />
+                <PublicRoute restricted>
+                  <RegisterForm />
+                </PublicRoute>
               </Suspense>
             }
           />
@@ -43,27 +45,29 @@ export function App() {
             path="login"
             element={
               <Suspense fallback={<Loader />}>
-                <LoginForm />
+                <PublicRoute restricted>
+                  <LoginForm />
+                </PublicRoute>
               </Suspense>
             }
           />
           <Route
             path="contacts"
             element={
-              isLoggedIn ? (
-                <Suspense fallback={<Loader />}>
+              <Suspense fallback={<Loader />}>
+                <PrivateRoute>
                   <ContactsView />
-                </Suspense>
-              ) : (
-                <Navigate to="/register" />
-              )
+                </PrivateRoute>
+              </Suspense>
             }
           >
             <Route
               path="edit/:contactId"
               element={
                 <Suspense fallback={<Loader />}>
-                  <Modal />
+                  <PrivateRoute>
+                    <Modal />
+                  </PrivateRoute>
                 </Suspense>
               }
             />
@@ -73,7 +77,3 @@ export function App() {
     </BrowserRouter>
   );
 }
-
-// /register - публичный маршрут регистрации нового пользователя с формой
-// /login - публичный маршрут логина сущестующего пользователя с формой
-// /contacts - приватный маршрут для работы с коллекцией контактов пользователя
