@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import authOperations from 'redux/auth/auth-operations.js';
 import { Loader } from 'components/Loader/Loader';
 import { PrivateRoute } from 'components/PrivateRoute.js';
@@ -27,6 +28,18 @@ export function App() {
             <Suspense fallback={<Loader />}>
               <PublicRoute>
                 <Usermenu />
+                <ToastContainer
+                  position="top-center"
+                  autoClose={1000}
+                  hideProgressBar
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="dark"
+                />
               </PublicRoute>
             </Suspense>
           }

@@ -1,6 +1,10 @@
 import { useSelector } from 'react-redux';
 import contactsOperations from 'redux/contacts/contacts-operations';
 import { useDispatch } from 'react-redux';
+import {
+  successNotify,
+  warnNotify,
+} from 'components/Notifications/ToastNotifictions';
 
 export const useFormHandler = initValues => {
   const dispatch = useDispatch();
@@ -10,12 +14,13 @@ export const useFormHandler = initValues => {
     const existingContacts = existingContactsArr.map(contact => contact.name);
 
     if (existingContacts.includes(contact.name)) {
-      alert(`${contact.name} is already exists`);
+      warnNotify(`${contact.name} is already exists`);
       return;
     }
 
     try {
       dispatch(contactsOperations.addContact(contact));
+      successNotify('Contact successfully added');
     } catch (error) {}
   };
 

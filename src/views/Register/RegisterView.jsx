@@ -6,6 +6,7 @@ import { FormElement } from 'components/Forms/FormElement';
 import { Button } from 'components/Button/Button';
 import { Label, Input } from 'components/Forms/Form.styled';
 import authOperations from 'redux/auth/auth-operations.js';
+import { warnNotify } from 'components/Notifications/ToastNotifictions';
 
 export default function RegisterForm() {
   const navigate = useNavigate();
@@ -16,6 +17,12 @@ export default function RegisterForm() {
 
   const submitHandler = e => {
     e.preventDefault();
+
+    if (password.length < 8) {
+      warnNotify('Password must be at least 8 characters');
+      return;
+    }
+
     dispatch(authOperations.register({ name, email, password }));
   };
 
