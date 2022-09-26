@@ -1,11 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Outlet } from 'react-router-dom';
 import { RiUserLine } from 'react-icons/ri';
-import { Header, Login } from './Usermenu.styled';
+import { Header, Login, Navlink } from './Usermenu.styled';
 import { Button } from 'components/Button/Button';
 import { Icon } from 'views/commonCss.styled';
 import authOperations from 'redux/auth/auth-operations.js';
-import { Link } from 'react-router-dom';
 
 export default function Usermenu() {
   const navigate = useNavigate();
@@ -18,13 +17,12 @@ export default function Usermenu() {
       <Header>
         {isLoggedIn ? (
           <>
-            <Link
-              to="/contacts"
-              style={{ fontWeight: '500', color: '#fadccd' }}
-            >
-              Contacts
-            </Link>
-            <div>
+            <nav className="navbox">
+              <Navlink to="/">Home</Navlink>
+              <Navlink to="/contacts">Contacts</Navlink>
+            </nav>
+
+            <div className="navbox">
               <Login>
                 Welcome,
                 <span style={{ textTransform: 'capitalize' }}>{name}</span>
@@ -40,7 +38,7 @@ export default function Usermenu() {
               <Button
                 type="button"
                 content="Log Out"
-                className="btn"
+                className="btn logoutBtn"
                 onClick={() => {
                   dispatch(authOperations.logout());
                 }}

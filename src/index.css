@@ -55,3 +55,13 @@ button:hover, button:active, button:focus {
   font-size: 12px;
   padding: 4px 20px;
 }
+
+.logoutBtn {
+  max-width: none;
+}
+
+.navbox {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
