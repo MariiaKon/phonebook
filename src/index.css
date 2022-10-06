@@ -10,8 +10,8 @@
 
 html {
   min-height: 100vh;
-  background: #0d0c0c;
-  color: #fadccd;
+  background: #000;
+  color: #bfb7f9;
 }
 
 body {
@@ -31,33 +31,26 @@ button {
   width: 40px;
   height: 40px;
   font-size: 24px;
-  background: #fadccd;
-  color: #964628;
-  border: 1px solid #964628;
+  background: transparent;
+  color: #bfb7f9;
+  border: 1px solid #bfb7f9;
   border-radius: 5px;
-  box-shadow:  0 0 4px 0 #0d0c0c;
   transition: 250ms ease-in-out;
   cursor: pointer;
 }
 
 button:hover, button:active, button:focus {
-  background-color: #dc5a28;
-  color: #fadccd;
-  border: 1px solid #964628;
-  box-shadow: 0 0 2px 1px #fadccd;
+  background-color: #bfb7f9;
+  color: #000;
+  border: 1px solid #8681af;
 }
 
 .btn {
   height: 24px;
-  width: 30%;
-  max-width: 80px;
   font-weight: 600;
   font-size: 12px;
-  padding: 4px 20px;
-}
-
-.logoutBtn {
-  max-width: none;
+  padding: 4px 24px;
+  width: fit-content;
 }
 
 .navbox {
@@ -65,3 +58,9 @@ button:hover, button:active, button:focus {
   align-items: center;
   gap: 20px;
 }
+
+@media screen and (max-width: 640px) {
+  nav.navbox {
+    display: none;
+  }
+};

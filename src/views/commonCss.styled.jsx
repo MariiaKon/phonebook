@@ -9,7 +9,7 @@ export const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0d0c0cc7;
+  background: #000000d4;
 `;
 
 export const Container = styled.div`
@@ -21,19 +21,19 @@ export const Container = styled.div`
   max-width: 600px;
   width: calc(100vw - 40px);
   min-width: 320px;
-  border: 1px solid #fadccd;
+  border: 1px solid #bfb7f9;
   border-radius: 10px;
-  background: #78321e;
+  background: #434158;
 `;
 
 export const PrimaryTitle = styled.h1`
   text-align: center;
-  text-shadow: #0d0c0c 0 0 4px;
+  text-shadow: #000 0 0 4px;
 `;
 
 export const SecondaryTitle = styled.h2`
   text-align: center;
-  text-shadow: #0d0c0c 0 0 4px;
+  text-shadow: #000 0 0 4px;
   font-size: 1.7em;
 `;
 
@@ -44,9 +44,9 @@ export const Icon = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid #964628;
+  border: 1px solid #bfb7f9;
   font-size: 24px;
   font-weight: 700;
-  color: #fadccd;
-  text-shadow: #964628 0 0 4px;
+  color: #bfb7f9;
+  text-shadow: #000 0 0 3px;
 `;

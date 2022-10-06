@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Contacts = styled.ul`
   width: 90%;
   list-style: none;
-  border: 1px solid #fadccd;
-  color: #0d0c0c;
+  border: 1px solid #bfb7f9;
+  color: #bfb7f9;
 `;
 
 export const ContactItem = styled.li`
@@ -16,15 +16,15 @@ export const ContactItem = styled.li`
   transition: 250ms ease-in-out;
 
   &:nth-of-type(odd) {
-    background-color: #9b7369;
+    background-color: #302e42;
   }
 
   &:nth-of-type(even) {
-    background-color: #b98775;
+    background-color: #3e3c55;
   }
 
   :hover {
-    border: 1px solid #fadccd7f;
+    border: 1px solid #bfb7f9;
   }
 
   :hover > div > div {
@@ -56,18 +56,3 @@ export const Info = styled.div`
     grid-area: 2 / 2 / 3 / 3;
   }
 `;
-
-// export const Icon = styled.div`
-//   grid-area: 1 / 1 / 3 / 2;
-//   width: 40px;
-//   height: 40px;
-//   border-radius: 50%;
-//   border: 1px solid #0d0c0c;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: 24px;
-//   font-weight: 700;
-//   color: #fadccd;
-//   text-shadow: #0d0c0c 0 0 4px;
-// `;
