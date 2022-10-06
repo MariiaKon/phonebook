@@ -6,6 +6,7 @@ import authOperations from 'redux/auth/auth-operations.js';
 import { Loader } from 'components/Loader/Loader';
 import { PrivateRoute } from 'components/PrivateRoute.js';
 import { PublicRoute } from 'components/PublicRoute.js';
+import { HomePage } from 'views/HomePage/HomePageView';
 const Usermenu = lazy(() => import('components/Usermenu/Usermenu'));
 const RegisterForm = lazy(() => import('views/Register/RegisterView'));
 const LoginForm = lazy(() => import('views/Login/LogInView'));
@@ -44,6 +45,15 @@ export function App() {
             </Suspense>
           }
         >
+          <Route
+            exact
+            path="/"
+            element={
+              <PublicRoute>
+                <HomePage />
+              </PublicRoute>
+            }
+          />
           <Route
             path="register"
             element={
