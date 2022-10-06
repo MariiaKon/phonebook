@@ -46,10 +46,13 @@ const fetchCurrentUser = createAsyncThunk(
     }
 
     token.set(persistedToken);
+
     try {
       const { data } = await axios.get('/users/current');
       return data;
-    } catch (error) {}
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 );
 
