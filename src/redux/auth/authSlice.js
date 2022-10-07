@@ -25,6 +25,10 @@ export const authSlice = createSlice({
       return (state = initialState);
     },
     [authOperations.fetchCurrentUser.fulfilled](state, { payload }) {
+      if (payload === undefined) {
+        localStorage.clear();
+        return;
+      }
       state.user = payload;
       state.isLoggedIn = true;
     },
