@@ -39,7 +39,9 @@ export function ContactList({ contacts }) {
                   {contact.name[0].toUpperCase()}
                 </Icon>
                 <Info>{contact.name}</Info>
-                <Info>{contact.number}</Info>
+                <Info>
+                  <a href={`tel:${contact.number}`}>{contact.number}</a>
+                </Info>
               </InfoBox>
 
               <ButtonsBox>

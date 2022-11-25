@@ -55,4 +55,8 @@ export const Info = styled.div`
   &:nth-of-type(odd) {
     grid-area: 2 / 2 / 3 / 3;
   }
+
+  & > a {
+    color: inherit;
+  }
 `;
