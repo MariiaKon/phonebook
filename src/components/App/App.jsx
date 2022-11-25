@@ -21,7 +21,7 @@ export function App() {
   }, [dispatch]);
 
   return (
-    <BrowserRouter basename="/goit-react-hw-08-phonebook">
+    <BrowserRouter basename="/phonebook">
       <Routes>
         <Route
           path="/"
